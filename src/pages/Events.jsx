@@ -9,7 +9,7 @@ export default function Events() {
       try {
         const SHEET_ID = "1ZF6HOqrn7R6RKKFA0jHqw9maT9TDFkI36efcb039Hk4";
         const SHEET_NAME = "INDIVIDUAL";
-        const SHEET_RANGE = "A:L";
+        const SHEET_RANGE = "A:T";
 
         const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${SHEET_NAME}&range=${SHEET_RANGE}`;
 
@@ -27,7 +27,7 @@ export default function Events() {
         const rows = data.table.rows;
         const formattedData = rows.map((row) => ({
           name: row.c[0]?.v || "Unnamed Event",
-          status: row.c[7]?.v || "Unknown",
+          status: row.c[13]?.v || "Unknown",
         }));
 
         setEventData(formattedData);

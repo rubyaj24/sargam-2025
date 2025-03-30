@@ -20,7 +20,7 @@ export default function SargamPrathibha() {
         Sargam Prathibha
       </h1>
       <div className="overflow-x-auto">
-        <table className="w-full border-collapse shadow-lg bg-gray-800 rounded-lg">
+        {/* <table className="w-full border-collapse shadow-lg bg-gray-800 rounded-lg">
           <thead>
             <tr className="bg-yellow-400 text-black text-lg">
               <th className="border border-gray-700 p-4">Rank</th>
@@ -54,7 +54,10 @@ export default function SargamPrathibha() {
               </tr>
             ))}
           </tbody>
-        </table>
+        </table> */}
+        <div className="text-center text-2xl font-bold text-yellow-400 mt-10">
+        TO BE ANNOUNCED
+        </div>
       </div>
     </div>
   );

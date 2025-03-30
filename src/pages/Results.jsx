@@ -10,35 +10,39 @@ export default function Results() {
       try {
         const SHEET_ID = '1ZF6HOqrn7R6RKKFA0jHqw9maT9TDFkI36efcb039Hk4';
         const SHEET_NAME = 'Individual'; // Update this to match your sheet name
-        const SHEET_RANGE = 'A2:K1000'; // Fetching required columns
+        const SHEET_RANGE = 'A:T'; // Fetching required columns
                 
         const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${SHEET_NAME}&range=${SHEET_RANGE}`;
         const response = await fetch(url);
         const text = await response.text();
         const jsonData = JSON.parse(text.substring(47, text.length - 2));
-
+    
         const formattedResults = jsonData.table.rows.map(row => {
-          const name = row.c[0]?.v || "";
-          const first = row.c[8]?.v || "";
-          const second = row.c[9]?.v || "";
-          const third = row.c[10]?.v || "";
+          const name = row.c[0]?.v ?? ""; // Handles #N/A errors safely
+    
+          // Handling multiple winners while ignoring #N/A
+          const firstWinners = [row.c[14]?.v, row.c[15]?.v].filter(v => v !== "#N/A" && v).join(", ");
+          const secondWinners = [row.c[16]?.v, row.c[17]?.v].filter(v => v !== "#N/A" && v).join(", ");
+          const thirdWinners = [row.c[18]?.v, row.c[19]?.v].filter(v => v !== "#N/A" && v).join(", ");
           
-          if (!first && !second && !third) return null; // Ignore if no results
+          if (!firstWinners && !secondWinners && !thirdWinners) return null; // Ignore if no results
           
           return {
             name,
             venue: "N/A", // Marking all venues as N/A
-            first: { name: first, department: "", year: "" },
-            second: { name: second, department: "", year: "" },
-            third: { name: third, department: "", year: "" },
+            first: { name: firstWinners || "N/A", department: "", year: "" },
+            second: { name: secondWinners || "N/A", department: "", year: "" },
+            third: { name: thirdWinners || "N/A", department: "", year: "" },
           };
         }).filter(event => event !== null);
-
+    
         setResults(formattedResults);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
+    
+    
     
     fetchData();
   }, []);
