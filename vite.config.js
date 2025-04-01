@@ -4,6 +4,7 @@ import path from "path"
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/sargam-2025/',
   plugins: [react()],
   resolve: {
     alias: {
