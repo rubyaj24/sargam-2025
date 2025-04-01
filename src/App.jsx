@@ -10,6 +10,7 @@ import SargamPrathibha from "./pages/SargamPrathibha";
 import Footer from "./components/Footer";
 import Loader from "./components/Loader";
 import styles from './styles/FadeIn.module.css';
+import CustomCursor from './components/CustomCursor';
 
 const App = () => {
   const [isCollapsed, setIsCollapsed] = useState(true);
@@ -30,6 +31,7 @@ const App = () => {
 
   return (
     <Router>
+      <CustomCursor />
       <div className="flex min-h-screen">
         {/* Desktop Sidebar */}
         <div className="hidden md:block">

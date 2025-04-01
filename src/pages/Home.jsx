@@ -1,7 +1,8 @@
-import Banner from "@/components/Banner";
+import Slideshow from "../components/Slideshow";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import backgroundVideo from "../assets/banner.mp4";
+import goldPattern from "../assets/gold_pattern.jpg";
 
 export default function Home() {
   const buttonItems = [
@@ -56,7 +57,7 @@ export default function Home() {
             A vibrant celebration of talent, culture, and unity!
           </p>
         </div>
-        <Banner />
+        <Slideshow />
         {/* Navigation Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-16">
           {buttonItems.map((item, index) => (
@@ -64,12 +65,25 @@ export default function Home() {
               key={index}
               to={item.link}
               className={({ isActive }) =>
-                `relative block min-h-56 bg-gradient-to-r from-red-700 to-red-500 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 overflow-hidden ${
+                `relative block min-h-56 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 overflow-hidden ${
                   isActive ? "ring-2 ring-yellow-400" : ""
                 }`
               }
             >
-              {/* Card Background Animation */}
+              {/* Base Gradient */}
+              <div className="absolute inset-0 bg-gradient-to-r from-red-700 to-red-500"></div>
+
+              {/* Gold Pattern Overlay */}
+              <div
+                className="absolute inset-0 mix-blend-multiply opacity-40"
+                style={{
+                  backgroundImage: `url(${goldPattern})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              ></div>
+
+              {/* Hover Overlay */}
               <div className="absolute inset-0 bg-opacity-30 bg-black hover:bg-opacity-20 transition-all duration-300"></div>
 
               {/* Card Content */}

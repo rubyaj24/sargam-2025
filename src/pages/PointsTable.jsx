@@ -28,7 +28,7 @@ export default function PointsTable() {
           department: row.c[0]?.v || '',
           totalPoints: row.c[1]?.v || 0
         }));
-
+        formattedData.sort((a, b) => b.totalPoints - a.totalPoints); // Sort by total points in descending order
         setPointsData(formattedData);
       } catch (error) {
         console.error("Error fetching data:", error);
