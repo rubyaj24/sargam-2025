@@ -20,7 +20,7 @@ const Banner2 = () => {
             Watch Promo
           </p>
           <p className="mt-2 text-sm md:text-base max-w-md opacity-80">
-            Check out the official instagram page of Sargam 2025 for the latest updates and event details. Follow us for a sneak peek into the excitement that awaits you!{" "}
+            Follow us for a sneak peek into the excitement that awaits you!{" "}
             <a
               href="https://www.instagram.com/sargamcet/"
               target="_blank"
